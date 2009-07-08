@@ -88,5 +88,4 @@ class Mail extends NewsletterAppModel {
     }
     return $groups;
   }
-}  
-?>
+}

@@ -270,4 +270,3 @@ class SubscriptionsController extends NewsletterAppController {
 	  return $errors;
   }
 }
-?>

@@ -55,4 +55,3 @@ class NewsletterAppController extends AppController {
   }
   
 }
-?>

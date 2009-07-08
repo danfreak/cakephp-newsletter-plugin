@@ -36,4 +36,3 @@ class NewsletterAppModel extends AppModel {
       $this->query("INSERT IGNORE INTO {$table} ({$fields}) VALUES {$sql_values};");		      
      }
 }
-?>

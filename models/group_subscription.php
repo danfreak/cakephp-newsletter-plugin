@@ -80,5 +80,4 @@ class GroupSubscription extends NewsletterAppModel {
     return $groups;
   }
 
-}  
-?>
+}

@@ -40,5 +40,4 @@ class MailView extends NewsletterAppModel {
     return $count[0]['count'];
   }
 
-}  
-?>
+}

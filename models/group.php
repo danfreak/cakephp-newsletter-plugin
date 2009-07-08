@@ -27,5 +27,4 @@ class Group extends NewsletterAppModel {
 				)
 		)
 	);
-}  
-?>
+}

@@ -10,4 +10,3 @@
 */
 class NewsletterAppHelper extends Helper {
 }
-?>
