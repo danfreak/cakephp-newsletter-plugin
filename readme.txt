@@ -9,9 +9,31 @@ a demo sendEmail() function that uses SwiftMailer (http://swiftmailer.org/) can 
 
 
 ----------------------------------
+INSTALLATION & CONFIGURATION
+----------------------------------
+drop the plugin files in the folder app/plugins/newsletter/
+
+create the necessary DB tables using either:
+the file in app/plugins/newsletter/config/sql/schema.sql
+
+or via shell copy app/plugins/newsletter/config/sql/newsletter.php in app/config/sql/
+and run:
+
+cake schema run create -name Newsletter
+
+
+Open app/plugins/newsletter/config/config.php
+Define the required configuration variables in your app/boostrap.php
+
+write=> require_once(APP.'plugins/newsletter/config/config.php');
+
+
+Enjoy!
+
+----------------------------------
 TODO
 ----------------------------------
-Explain COnfiguration Fields
+Explain Configuration Fields
 $subject = Configure::read('Newsletter.unsubscribe_subject');
 $subject = Configure::read('Newsletter.subscribe_subject');
 $from = Configure::read('Newsletter.from'); #Required
