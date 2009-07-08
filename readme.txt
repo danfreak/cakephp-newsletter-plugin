@@ -22,10 +22,10 @@ and run:
 cake schema run create -name Newsletter
 
 
-Open app/plugins/newsletter/config/config.php
+Open app/plugins/newsletter/config/newsletter.php
 Define the required configuration variables in your app/boostrap.php
 
-write=> require_once(APP.'plugins/newsletter/config/config.php');
+write=> require_once(APP.'plugins/newsletter/config/newsletter.php');
 
 
 Enjoy!
