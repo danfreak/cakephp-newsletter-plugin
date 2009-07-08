@@ -1,10 +1,17 @@
-Requires:
+----------------------------------
+REQUIREMENTS
+----------------------------------
 Extend-Associations: http://bakery.cakephp.org/articles/view/add-delete-habtm-behavior
 JQuery for ajax calls in admin_send.ctp
 
-TODO Explain NewsletterAppController sendEmail() function
+You MUST have a sendEmail() function in your Appcontroller
+a demo sendEmail() function that uses SwiftMailer (http://swiftmailer.org/) can be found here http://wiki.github.com/fabiokr/cakephp-newsletter-plugin
 
-TODO Explain COnfiguration Fields
+
+----------------------------------
+TODO
+----------------------------------
+Explain COnfiguration Fields
 $subject = Configure::read('Newsletter.unsubscribe_subject');
 $subject = Configure::read('Newsletter.subscribe_subject');
 $from = Configure::read('Newsletter.from'); #Required
