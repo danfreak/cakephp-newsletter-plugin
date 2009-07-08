@@ -64,7 +64,7 @@
 
 <script>
   function changeOptOut(id) {
-    var td = $('#td_opt_out_'+id);
+    var td = jQuery('#td_opt_out_'+id);
     var url = "<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/admin/newsletter/subscriptions/invert_opt_out/'?>"+id;
     td.load(url);
   }
