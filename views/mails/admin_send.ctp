@@ -26,7 +26,7 @@
 </div>
 <script>
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
 	startInterval();
 });
 
@@ -37,7 +37,7 @@ function startInterval() {
 
 function callJob() {
   var url = "<?= 'http://'.$_SERVER['HTTP_HOST'].'/admin/newsletter/mails/send_mail/'.$mail['Mail']['id'] ?>";
-  $("#updatable_table").load(url);
+  jQuery("#updatable_table").load(url);
 }
 
 </script>
