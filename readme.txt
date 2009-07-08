@@ -21,4 +21,3 @@ $subject = Configure::read('Newsletter.sendX'); #Number of emails to sent at eac
 $subject = Configure::read('Newsletter.sendInterval'); #the interval time before send next batch
 $subject = Configure::read('Newsletter.mail_opt_out_message');
 $subject = Configure::read('Newsletter.emptyImagePath');
-
