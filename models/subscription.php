@@ -93,4 +93,3 @@ class Subscription extends NewsletterAppModel {
 	}
 	
 }
-?>
