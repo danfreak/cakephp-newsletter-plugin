@@ -16,7 +16,7 @@ CREATE TABLE  `newsletter_groups` (
   `created` datetime default NULL,
   `modified` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE  `newsletter_groups_subscriptions` (
   `id` int(10) unsigned NOT NULL auto_increment,
