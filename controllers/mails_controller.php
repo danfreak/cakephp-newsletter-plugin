@@ -187,26 +187,16 @@ class MailsController extends NewsletterAppController {
       $header_message = Configure::read('Newsletter.mail_header_message');
       $footer_message = Configure::read('Newsletter.mail_opt_out_message');
       
+      $viewPath = dirname(__FILE__).DS.'views'.DS.'mails'.DS.'email'.DS;
+      
       $myMail = '';
       
       if(!$footer_message) {
-          ob_start();
-      ?>
-        <div id="footer">
-          <p>You are receiving this email because you are into our mail list.</p>
-          <p>If you don't want to receive our messages, please
-          <a href="@@link@@">click here</a>.</p>
-        </div>
-        <style type="text/css">
-          div#footer{
-      	    font-size:10px;
-      	    margin-top:15px;
-      	    line-height:normal
-          }
-        </style> 
-      <?php
-      $footer_message = ob_get_contents();
-      ob_end_clean();
+          $footer_message = file_get_contents($viewPath.'newsletter_footer.ctp');
+      }
+      
+      if(!$header_message) {
+          $footer_message = file_get_contents($viewPath.'newsletter_header.ctp');
       }
       
       if(!$url) {
@@ -214,9 +204,10 @@ class MailsController extends NewsletterAppController {
       } else {
         $url = "http://".$_SERVER['HTTP_HOST']."$url";
       }
+      
       $footer_message = str_replace('@@link@@', $url, $footer_message);
       
-      $content = str_replace('@@header@@', $header_message, $content);
+      //$content = str_replace('@@header@@', $header_message, $content);
       
       if(strpos($content, '@@footer@@') === false) {
         $myMail =  $content.$footer_message;
@@ -226,7 +217,7 @@ class MailsController extends NewsletterAppController {
       
       $fakeImage = "<img height='1px' width='1px' src='http://".$_SERVER['HTTP_HOST']."/newsletter/mails/read/".$readConfirmationCode ."'/>";
       
-      $myMail = $myMail.$fakeImage;
+      $myMail = $header_message.$myMail.$fakeImage;
       
       return $myMail;
   }
