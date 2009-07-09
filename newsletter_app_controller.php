@@ -12,7 +12,17 @@
 class NewsletterAppController extends AppController {
 
   var $components = array('RequestHandler');
-
+  
+  function beforeFilter(){
+      //load config file
+      $newsletterConfigPath = dirname(__FILE__).'/config/newsletter.php';
+      if(file_exists($newsletterConfigPath)){
+          echo 'exists';
+          require_once($newsletterConfigPath);
+      }
+      
+      parent::beforeFilter();
+  }
   /**
   * Verifies if $str exists into $array. If $array is null, it's value
   * is assumed as $this->data.
