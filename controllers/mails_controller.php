@@ -187,7 +187,7 @@ class MailsController extends NewsletterAppController {
       $header_message = Configure::read('Newsletter.mail_header_message');
       $footer_message = Configure::read('Newsletter.mail_opt_out_message');
       
-      $viewPath = dirname(__FILE__).DS.'views'.DS.'mails'.DS.'email'.DS;
+      $viewPath = dirname(dirname(__FILE__)).DS.'views'.DS.'mails'.DS.'email'.DS;
       
       $myMail = '';
       
