@@ -147,10 +147,12 @@ class MailsController extends NewsletterAppController {
     $subscriptions = $this->GroupSubscription->restingSubscriptions($id, array('limit' => $limit));
     
     if(!empty($subscriptions)) {      
-      $this->set('content', $mail['Mail']['content']);
-      $this->set('readConfirmationCode', $mail['Mail']['read_confirmation_code']);
-      $this->set('url', Configure::read('Newsletter.unsubscribe_url'));
-      $this->sendEmail($mail['Mail']['subject'], 'mail', $this->extractEmailAndName($subscriptions), $mail['Mail']['from_email'], $mail['Mail']['from']);
+      $content = $mail['Mail']['content'];
+      $readConfirmationCode = $mail['Mail']['read_confirmation_code'];
+      $url = Configure::read('Newsletter.unsubscribe_url');
+      $mailToSend = $this->_buildMail($content, $readConfirmationCode, $url);
+      
+      $this->sendEmail($mail['Mail']['subject'], $mailToSend, $this->extractEmailAndName($subscriptions), $mail['Mail']['from_email'], $mail['Mail']['from']);
       
       #updated 'last_sent_subscription_id' and 'sent'
       $last_element = end($subscriptions);
@@ -180,4 +182,52 @@ class MailsController extends NewsletterAppController {
     return $list;
   }
   
+    //SENDS MAIL AS HTML
+    function _buildMail($content, $readConfirmationCode, $url){
+      $header_message = Configure::read('Newsletter.mail_header_message');
+      $footer_message = Configure::read('Newsletter.mail_opt_out_message');
+      
+      $myMail = '';
+      
+      if(!$footer_message) {
+          ob_start();
+      ?>
+        <div id="footer">
+          <p>You are receiving this email because you are into our mail list.</p>
+          <p>If you don't want to receive our messages, please
+          <a href="@@link@@">click here</a>.</p>
+        </div>
+        <style type="text/css">
+          div#footer{
+      	    font-size:10px;
+      	    margin-top:15px;
+      	    line-height:normal
+          }
+        </style> 
+      <?php
+      $footer_message = ob_get_contents();
+      ob_end_clean();
+      }
+      
+      if(!$url) {
+        $url = "http://".$_SERVER['HTTP_HOST']."/newsletter/subscriptions/unsubscribe";
+      } else {
+        $url = "http://".$_SERVER['HTTP_HOST']."$url";
+      }
+      $footer_message = str_replace('@@link@@', $url, $footer_message);
+      
+      $content = str_replace('@@header@@', $header_message, $content);
+      
+      if(strpos($content, '@@footer@@') === false) {
+        $myMail =  $content.$footer_message;
+      } else {
+        $myMail = str_replace('@@footer@@', $footer_message ,$content);
+      }
+      
+      $fakeImage = "<img height='1px' width='1px' src='http://".$_SERVER['HTTP_HOST']."/newsletter/mails/read/".$readConfirmationCode ."'/>";
+      
+      $myMail = $myMail.$fakeImage;
+      
+      return $myMail;
+  }
 }
