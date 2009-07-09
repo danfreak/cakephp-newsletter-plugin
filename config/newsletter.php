@@ -19,6 +19,10 @@ Configure::write('Newsletter.sendX', 10);
 #the interval time before send next batch in seconds
 Configure::write('Newsletter.sendInterval', 10); 
 
+//the message you want to use to tell about unsubscribing
 Configure::write('Newsletter.mail_opt_out_message', '');
+
+//header message of the newsletter
+Configure::write('Newsletter.mail_header_message', '#########');
 
 Configure::write('Newsletter.emptyImagePath', '');
