@@ -24,7 +24,7 @@ CREATE TABLE  `newsletter_groups_subscriptions` (
   `newsletter_group_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `Foreign_Keys` (`newsletter_subscription_id`,`newsletter_group_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE  `newsletter_mails` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -38,7 +38,7 @@ CREATE TABLE  `newsletter_mails` (
   `created` datetime default NULL,
   `modified` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE  `newsletter_mail_views` (
   `id` int(10) unsigned NOT NULL auto_increment,
