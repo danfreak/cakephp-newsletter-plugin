@@ -17,7 +17,6 @@ class NewsletterAppController extends AppController {
       //load config file
       $newsletterConfigPath = dirname(__FILE__).'/config/newsletter.php';
       if(file_exists($newsletterConfigPath)){
-          echo 'exists';
           require_once($newsletterConfigPath);
       }
       
